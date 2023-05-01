@@ -9,6 +9,9 @@ import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import getError from '../utils';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -40,15 +43,18 @@ const ProductScreen = () => {
           // console.log(result);
           dispatch({ type: "FETCH_SUCCESS", payload: result.data });
         } catch (error) {
-          console.log(error);
-          dispatch({ type: "FETCH_FAIL", payload: error.message });
+          // console.log(error);
+          dispatch({ type: "FETCH_FAIL", payload: getError(error) });
         }
       };
       fetchData();
     }, [slug]);
   return (
-    loading ? <div>Loading...</div>:
-    error ? <div>{error}</div> :
+    loading ? (
+      <LoadingBox/>
+    ) : error ? (
+      <MessageBox variant='danger'>{error}</MessageBox>
+    ) :
     <Row>
         <Col md={6}>
          <img className='img-large' src={product.image} alt={product.name} /> 
