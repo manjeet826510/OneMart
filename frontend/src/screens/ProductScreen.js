@@ -51,9 +51,21 @@ const ProductScreen = () => {
       fetchData();
     }, [slug]);
 
-    const {state, dispatch: ctxDispatch} = useContext(Store)
-    const addToCartHandler = ()=>{
-      ctxDispatch({type: 'CART_ADD_ITEM', payload: {...product, /*quantity: 1*/}});
+    const {state, dispatch: ctxDispatch} = useContext(Store);
+    const {cart} = state;
+    const addToCartHandler = async ()=>{
+      // console.log('cart = ' + JSON.stringify(cart));
+      // console.log('product = ' + JSON.stringify(product));
+      const existItem = cart.cartItems.find((x)=>x._id === product._id);
+      // console.log('existItem = ' + JSON.stringify(existItem));
+      const quantity = existItem? existItem.quantity+1 : 1;
+      // console.log(`quantity = ${quantity}`);
+      const {data} = await axios.get(`/api/products/${product._id}`)
+      if(data.countInStock<quantity){
+        window.alert('Sorry, the product is out of stock');
+        return;
+      }
+      ctxDispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}});
     }
   return (
     loading ? (
