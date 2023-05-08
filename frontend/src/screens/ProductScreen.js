@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useReducer } from 'react'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Rating from '../components/Rating';
 import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
@@ -28,6 +28,7 @@ const reducer = (state, action) => {
 };
 
 const ProductScreen = () => {
+    const navigate = useNavigate();
     const params = useParams();
     const {slug} = params;
 
@@ -66,6 +67,7 @@ const ProductScreen = () => {
         return;
       }
       ctxDispatch({type: 'CART_ADD_ITEM', payload: {...product, quantity}});
+      navigate('/cart');
     }
   return (
     loading ? (
