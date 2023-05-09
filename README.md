@@ -70,3 +70,12 @@
     3. Storing cartItems in local storage
     4. click handler for checkout
     5. add to cart implement for product.js
+18. Create Signin Screen
+    1. create signin form
+    2. add  email and password
+    3. add signin button
+19. Connect To MongoDB Database
+    1. create atlas mongodb database
+    2. install local mongodb database
+    3. npm install mongoose
+    4. connect to mongodb database 
