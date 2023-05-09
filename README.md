@@ -86,3 +86,9 @@
     4. use route in server.js
     5. seed sample product
     6. put product related routes in productRoutes
+21. Seed Sample Users
+    1. create user model
+    2. seed sample users
+    3. install bcryptjs
+    4. add users in data.js
+    5. create user routes
