@@ -92,3 +92,7 @@
     3. install bcryptjs
     4. add users in data.js
     5. create user routes
+22. Create signin backend API
+    1. create signin api in server.js and create userRoutes and install express-async-handler
+    2. npm install jsonwebtoken 
+    3. define generateToken
