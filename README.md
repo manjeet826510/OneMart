@@ -96,3 +96,7 @@
     1. create signin api in server.js and create userRoutes and install express-async-handler
     2. npm install jsonwebtoken 
     3. define generateToken
+23. Complete Signin Screen
+    1. handle submit action
+    2. save token in store and local storage
+    3. show user name in header
