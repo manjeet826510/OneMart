@@ -1,42 +1,43 @@
 # MERN amazona
 
 # Lessons
+
 1. Introduction
 2. Install tools
 3. Create react app
 4. Create git repository
 5. List Products
-    1. create products array
-    2. add product images
-    3. render products
-    4. style products
+   1. create products array
+   2. add product images
+   3. render products
+   4. style products
 6. Add routing
-    1. npm i react-router-dom
-    2. create route for home screen
-    3. create route for product screen
+   1. npm i react-router-dom
+   2. create route for home screen
+   3. create route for product screen
 7. Create Node.JS Server
-    1. run npm init in amazona/backend folder
-    2. Update package.json set type: module to use ES6 module imports/ to use import instead of require
-    3. create server.js
-    4. npm install express
-    5. Add .js to imports
-    6. create express app
-    7. move data.js from frontend to backend
-    8. create route for /api/products
-    9. run npm start
-    10. npm install nodemon --save-dev
-    11. put "start": "nodemon server.js", in scripts in backend package.json file
-    12. run npm start
+   1. run npm init in amazona/backend folder
+   2. Update package.json set type: module to use ES6 module imports/ to use import instead of require
+   3. create server.js
+   4. npm install express
+   5. Add .js to imports
+   6. create express app
+   7. move data.js from frontend to backend
+   8. create route for /api/products
+   9. run npm start
+   10. npm install nodemon --save-dev
+   11. put "start": "nodemon server.js", in scripts in backend package.json file
+   12. run npm start
 8. Fetch products from backend
-    1. set proxy in frontend package.json so that frontend can access backend
-    2. npm install axios in frontend
-    3. use state hook
-    4. use effect hook
-    5. use reducer hook
+   1. set proxy in frontend package.json so that frontend can access backend
+   2. npm install axios in frontend
+   3. use state hook
+   4. use effect hook
+   5. use reducer hook
 9. Manage State by Reducer Hook
-    1. define reducer
-    2. update fetch data
-    3. get state from useReducer
+   1. define reducer
+   2. update fetch data
+   3. get state from useReducer
 10. Add bootstrap UI Framework
     1. npm install react-bootstrap bootstrap
     2. update App.js
@@ -72,13 +73,13 @@
     5. add to cart implement for product.js
 18. Create Signin Screen
     1. create signin form
-    2. add  email and password
+    2. add email and password
     3. add signin button
 19. Connect To MongoDB Database
     1. create atlas mongodb database
     2. install local mongodb database
     3. npm install mongoose
-    4. connect to mongodb database 
+    4. connect to mongodb database
 20. Seed Sample Data
     1. create Product model
     2. create seed route
@@ -94,9 +95,13 @@
     5. create user routes
 22. Create signin backend API
     1. create signin api in server.js and create userRoutes and install express-async-handler
-    2. npm install jsonwebtoken 
+    2. npm install jsonwebtoken
     3. define generateToken
 23. Complete Signin Screen
     1. handle submit action
     2. save token in store and local storage
     3. show user name in header
+24. Create Shipping Screen
+    1. create form inputs
+    2. handle save shipping address
+    3. add checkout wizard bar
