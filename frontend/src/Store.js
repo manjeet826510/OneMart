@@ -53,7 +53,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         userInfo: null,
-        cart: { cartItems: [], shippingAddress: {} },
+        cart: {
+          cartItems: localStorage.getItem("cartItems")
+            ? JSON.parse(localStorage.getItem("cartItems"))
+            : [],
+          shippingAddress: {},
+          paymentMethod: "",
+        },
       };
     }
     case "SAVE_SHIPPING_ADDRESS": {

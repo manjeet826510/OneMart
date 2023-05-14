@@ -20,6 +20,7 @@ import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+  // console.log(`len is ${cart.cartItems.length}`);
 
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
