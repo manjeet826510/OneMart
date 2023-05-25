@@ -34,7 +34,7 @@ const SigninScreen = () => {
         // console.log(state);
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate(redirect || "/");
-      //   console.log(data);
+        // console.log(data);
     } catch (err) {
       toast.error(getError(err));
     }
