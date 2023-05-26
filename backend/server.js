@@ -7,6 +7,9 @@ import userRouter from "./routes/userRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
 import payRouter from "./routes/payRouter.js";
 import path from "path";
+const cors = require('cors');
+
+
 
 dotenv.config();
 
@@ -16,6 +19,9 @@ mongoose
   .catch((err) => console.log(err.message));
 
 const app = express();
+
+// Enable CORS
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
