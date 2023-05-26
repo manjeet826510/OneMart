@@ -6,11 +6,11 @@ import express from "express";
 const payRouter = express.Router();
 
 payRouter.post("/", async (req, res) => {
-  // console.log('hello from backend');
+  console.log('hello from backend');
   try {
     // console.log('hello from try');
     const instance = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
+      key_id: process.env.REACT_APP_RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_SECRET,
     });
     // console.log('instance');

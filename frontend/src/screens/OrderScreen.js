@@ -97,6 +97,7 @@ const OrderScreen = () => {
   };
 
   const displayRazorpay = async () => {
+    console.log('razor pay btn is clicked');
     try {
       await loadScript("https://checkout.razorpay.com/v1/checkout.js");
       const result = await createOrder();
