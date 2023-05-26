@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { toast } from "react-toastify";
 import getError from "../utils";
-import Axios from "axios";
+import axios from "axios";
 import LoadingBox from "../components/LoadingBox";
 
 const reducer = (state, action) => {
@@ -51,7 +51,7 @@ const PlaceOrderScreen = () => {
       // console.log(`token is ` + JSON.stringify(userInfo.jwtToken));
       // console.log(`cartItems is ` + JSON.stringify(cart.cartItems));
       // console.log(`shippingAddress is ` + JSON.stringify(cart.shippingAddress));
-      const { data } = await Axios.post(
+      const { data } = await axios.post(
         "/api/orders",
         {
           orderItems: cart.cartItems,
@@ -64,7 +64,9 @@ const PlaceOrderScreen = () => {
         },
         {
           headers: {
-            authorization: `Bearer ${userInfo.jwtToken}`,
+            authorization: userInfo
+              ? `Bearer ${userInfo.jwtToken}`
+              : "razorpay",
           },
         }
       );

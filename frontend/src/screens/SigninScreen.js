@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../Store";
-import {toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import getError from "../utils";
 
 const SigninScreen = () => {
@@ -31,10 +31,10 @@ const SigninScreen = () => {
         password: password,
       });
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
-        // console.log(state);
+      // console.log(state);
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate(redirect || "/");
-        // console.log(data);
+      // console.log(data);
     } catch (err) {
       toast.error(getError(err));
     }

@@ -46,10 +46,10 @@ const PaymentMethodScreen = () => {
           <div className="mb-3">
             <Form.Check
               type="radio"
-              id="PayPal"
-              label="PayPal"
-              value="PayPal"
-              checked={paymentMethodName === "PayPal"}
+              id="CashOnDelivery"
+              label="CashOnDelivery"
+              value="CashOnDelivery"
+              checked={paymentMethodName === "CashOnDelivery"}
               onChange={(e) => setPaymentMethodName(e.target.value)}
             />
           </div>

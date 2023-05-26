@@ -11,7 +11,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 // import axios from "axios";
 
 const CartScreen = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -25,12 +25,12 @@ const CartScreen = () => {
     // }
     ctxDispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
   };
-  const removeItemhandler = (item)=>{
-    ctxDispatch({type: "CART_REMOVE_ITEM", payload: item})
-  }
-  const checkoutHandler = ()=>{
-    navigate('/signin?redirect=/shipping')
-  }
+  const removeItemhandler = (item) => {
+    ctxDispatch({ type: "CART_REMOVE_ITEM", payload: item });
+  };
+  const checkoutHandler = () => {
+    navigate("/signin?redirect=/shipping");
+  };
   return (
     <div>
       <Helmet>

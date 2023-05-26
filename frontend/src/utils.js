@@ -1,9 +1,7 @@
 const getError = (error) => {
-  return (
-    error.response && error.response.data.message
+  return error.response && error.response.data.message
     ? error.response.data.message
-    : error.message
-  )
-}
+    : error.message;
+};
 
-export default getError
+export default getError;

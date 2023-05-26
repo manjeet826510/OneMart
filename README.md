@@ -122,3 +122,13 @@
     1. create backend api for order/:id
     2. fetch order api in frontend
     3. show order information in 2 columns
+30. Implemented Razor Pay Integration
+31. Display Order History
+    1. create order screen
+    2. create order history api
+    3. use api in the frontend
+32. Create Profile Screen
+    1. get user info from context
+    2. show user information
+    3. create user update api
+    4. update user info

@@ -43,19 +43,19 @@ const HomeScreen = () => {
   }, []);
   return (
     <div>
-    <Helmet>
-      <title>Amazona</title>
-    </Helmet>
+      <Helmet>
+        <title>Amazona</title>
+      </Helmet>
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
-          <LoadingBox/>
+          <LoadingBox />
         ) : error ? (
-          <MessageBox variant='danger'>{error}</MessageBox>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
             {products.map((product) => (
-              <Col  sm={6} md={4} lg={3} className="mb-3" key={product.slug} >
+              <Col sm={6} md={4} lg={3} className="mb-3" key={product.slug}>
                 <Product product={product} />
               </Col>
             ))}
