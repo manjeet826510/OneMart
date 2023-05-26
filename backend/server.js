@@ -7,7 +7,7 @@ import userRouter from "./routes/userRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
 import payRouter from "./routes/payRouter.js";
 import path from "path";
-const cors = require('cors');
+import cors from 'cors'
 
 
 
@@ -25,15 +25,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://amazona-u79y.onrender.com"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+
 
 app.get("/api/rzp/razorpay-key", (req, res) => {
   const razorpayKey = process.env.REACT_APP_RAZORPAY_KEY_ID;
