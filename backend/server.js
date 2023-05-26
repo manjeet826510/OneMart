@@ -53,6 +53,6 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 5000;
 
 app.listen(port, "0.0.0.0", () => {
-  console.log(`server is listening at : ${port}`);
+  console.log(`server is listening at :${port}`);
 });
 

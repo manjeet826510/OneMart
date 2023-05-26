@@ -72,7 +72,7 @@ const OrderScreen = () => {
 
   const createOrder = async () => {
     // creating a new order
-    const dataResult = await axios.post("http://localhost:5000/api/create", {
+    const dataResult = await axios.post("/api/create", {
       order_id: orderId,
       amount: order.totalPrice.toFixed(2),
       currency: "INR",
@@ -97,7 +97,7 @@ const OrderScreen = () => {
   };
 
   const displayRazorpay = async () => {
-    console.log('razor pay btn is clicked');
+    // console.log('razor pay btn is clicked');
     try {
       await loadScript("https://checkout.razorpay.com/v1/checkout.js");
       const result = await createOrder();
