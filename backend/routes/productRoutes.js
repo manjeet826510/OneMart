@@ -20,7 +20,7 @@ productRouter.get("/", async (req, res) => {
   });
   productRouter.get("/:id", async (req, res) => {
     // console.log(req.params);
-    const product = await Product.findOne(req.params._id);
+    const product = await Product.findOne({_id: req.params.id});
     if (product) {
       res.send(product);
     } else {
