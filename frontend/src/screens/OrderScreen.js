@@ -12,6 +12,7 @@ import Card from "react-bootstrap/esm/Card";
 import ListGroup from "react-bootstrap/esm/ListGroup";
 import Button from "react-bootstrap/esm/Button";
 import { toast } from "react-toastify";
+// import { Toast } from "react-toastify/dist/components";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -167,7 +168,16 @@ const OrderScreen = () => {
               : "razorpay",
           },
         });
-        // console.log(data);
+        console.log(data); 
+        // data = {shippingAddress: {…}, _id: '6491802b42a5af26e4e4b037', orderItems: Array(1), paymentMethod: 'RazorPay', itemsPrice: 240, …}
+
+        if (data.user !== userInfo._id) {
+          // Order does not belong to the logged-in user
+          toast.error("Order not found.")
+          navigate("/"); // Redirect to a different page or show an error message
+          return;
+        }
+
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
@@ -176,9 +186,12 @@ const OrderScreen = () => {
       // setProducts(result.data);
     };
 
-    if (!userInfo) {
-      return navigate("/signin");
-    }
+    //protecting users order history
+
+    // if (!userInfo) {
+    //   return navigate("/signin");
+    // }
+    //
 
     if (!order._id || succcessPay || (order._id && order._id !== orderId)) {
       fetchOrder();

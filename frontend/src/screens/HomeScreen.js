@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import { Helmet } from "react-helmet-async";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import { Link } from "react-router-dom";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -62,6 +63,7 @@ const HomeScreen = () => {
           </Row>
         )}
       </div>
+
     </div>
   );
 };

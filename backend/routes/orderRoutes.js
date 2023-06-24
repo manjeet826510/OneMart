@@ -1,7 +1,10 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
-import { isAuth } from "../utils.js";
+import { isAdmin, isAuth } from "../utils.js";
+import mongoose from "mongoose";
+import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 
 const orderRouter = express.Router();
 
@@ -26,20 +29,86 @@ orderRouter.post(
 );
 
 orderRouter.get(
+  "/summary",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    // console.log("this route is hitted");
+
+    const users = await User.aggregate([
+      {
+        $group: {
+          _id: null,
+          numUsers: { $sum: 1 },
+        },
+      },
+    ]);
+    //By using the $group stage in combination with the $sum operator, you can perform various aggregation calculations on your data, such as counting, summing, averaging, etc.,
+    //User= [
+    //   { _id: 1, name: "John" },
+    //   { _id: 2, name: "Alice" },
+    //   { _id: 3, name: "Bob" },
+    //   { _id: 4, name: "Jane" }
+    // ]
+    //users = [
+    //   {
+    //     _id: null,
+    //     numUsers: 4
+    //   }
+    // ]
+
+    const orders = await Order.aggregate([
+      {
+        $group: {
+          _id: null,
+          numOrders: { $sum: 1 },
+          totalSales: { $sum: `$totalPrice` },
+        },
+      },
+    ]);
+
+    const dailyOrders = await Order.aggregate([
+      {
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+          orders: { $sum: 1 },
+          sales: { $sum: `$totalPrice` },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+    ]);
+
+    const productCategories = await Product.aggregate([
+      {
+        $group: {
+          _id: `$category`,
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    // productCategories = [ {}, {}] two groups formed
+
+    res.send({ users, orders, dailyOrders, productCategories });
+    // { "users": users, ...}
+  })
+);
+
+orderRouter.get(
   "/mine",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     // console.log('Hello from backend');
     // console.log(req.user);
-    const orders = await Order.find({user:req.user._id});
+    const orders = await Order.find({ user: req.user._id });
     // if(orders){
     //   console.log(orders);
     // }
     // else{
     //   console.log('order is empty');
     // }
-      res.send(orders);
-
+    res.send(orders);
   })
 );
 
@@ -47,6 +116,10 @@ orderRouter.get(
   "/:id",
   isAuth,
   expressAsyncHandler(async (req, res) => {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      res.status(404).send({ message: "Order Not Found" });
+      return;
+    }
     const order = await Order.findById(req.params.id);
     if (order) {
       res.send(order);
@@ -57,10 +130,10 @@ orderRouter.get(
 );
 
 orderRouter.put(
-  '/:id/pay',
+  "/:id/pay",
   isAuth,
-  expressAsyncHandler(async (req, res)=>{
-    console.log('req is coming to orderRouter.put', req);
+  expressAsyncHandler(async (req, res) => {
+    console.log("req is coming to orderRouter.put", req);
     const order = await Order.findById(req.params.id);
     if (order) {
       order.isPaid = true;
@@ -70,14 +143,14 @@ orderRouter.put(
         status: req.body.status,
         update_time: req.body.update_time,
         email_address: req.body.email_address,
-      }
+      };
 
       const updatedOrder = await order.save();
-      res.send({message: 'Order Paid', order: updatedOrder})
+      res.send({ message: "Order Paid", order: updatedOrder });
     } else {
       res.status(404).send({ message: "Order Not Found" });
-    } 
+    }
   })
-)
+);
 
 export default orderRouter;

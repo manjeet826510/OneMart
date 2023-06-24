@@ -9,4 +9,4 @@ const LoadingBox = () => {
   )
 }
 
-export default LoadingBox
+export default LoadingBox;

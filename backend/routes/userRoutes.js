@@ -6,8 +6,7 @@ import {generateToken, isAuth} from "../utils.js";
 
 const userRouter = express.Router();
 
-userRouter.post(
-  "/signin",
+userRouter.post("/signin",
   expressAsyncHandler(async (req, res) => {
     // console.log(req.body);
     const user = await User.findOne({ email: req.body.email });
@@ -29,8 +28,7 @@ userRouter.post(
   })
 );
 
-userRouter.post(
-  "/signup",
+userRouter.post("/signup",
   expressAsyncHandler(async (req, res) => {
     // console.log(req.body);
     const newUser = new User({
@@ -50,8 +48,7 @@ userRouter.post(
   })
 );
 
-userRouter.put(
-  "/profile",
+userRouter.put("/profile",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     // console.log(req.body);

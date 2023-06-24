@@ -7,4 +7,4 @@ const MessageBox = (props) => {
   )
 }
 
-export default MessageBox
+export default MessageBox;

@@ -7,14 +7,13 @@ import userRouter from "./routes/userRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
 import payRouter from "./routes/payRouter.js";
 import path from "path";
-import cors from 'cors'
-
-
+import cors from "cors";
+import uploadRouter from "./routes/uploadRouter.js";
 
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI_LOCAL)
   .then(() => console.log("connected to db"))
   .catch((err) => console.log(err.message));
 
@@ -26,7 +25,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get("/api/rzp/razorpay-key", (req, res) => {
   const razorpayKey = process.env.REACT_APP_RAZORPAY_KEY_ID;
   res.json({ razorpayKey });
@@ -36,7 +34,9 @@ app.use("/api/seed", seedRouter);
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
+app.use("/admin/api/orders", orderRouter);
 app.use("/api/create", payRouter);
+app.use("/api/upload", uploadRouter);
 // app.use("/api/rzp", rzpRouter);
 
 const __dirname = path.resolve();
@@ -55,4 +55,3 @@ const port = process.env.PORT || 5000;
 app.listen(port, "0.0.0.0", () => {
   console.log(`server is listening at :${port}`);
 });
-
