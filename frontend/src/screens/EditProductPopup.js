@@ -35,6 +35,7 @@ const EditProductPopup = ({ closePopup, pid }) => {
     name: "",
     slug: "",
     image: null,
+    newImage: null,
     brand: "",
     category: "",
     description: "",
@@ -51,6 +52,7 @@ const EditProductPopup = ({ closePopup, pid }) => {
         name: data.name,
         slug: data.slug,
         image: data.image,
+        newImage: null,
         brand: data.brand,
         category: data.category,
         description: data.description,
@@ -66,19 +68,19 @@ const EditProductPopup = ({ closePopup, pid }) => {
   };
 
   const handleImageUpload = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    setFormData({ ...formData, newImage: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`name = ${formData.name}, slug = ${formData.slug}`);
+    // console.log(`name = ${formData.name}, slug = ${formData.slug}`);
 
     try {
-      console.log(`formData.image : ${formData.image}`);
+      // console.log(`formData.image : ${formData.image}`);
       dispatch({ type: "CREATE_REQUEST" });
-      if (formData.image) {
+      if (formData.newImage) {
         const formDataImage = new FormData();
-        formDataImage.append("image", formData.image);
+        formDataImage.append("image", formData.newImage);
 
         const {
           data: { imageUrl },
@@ -91,7 +93,7 @@ const EditProductPopup = ({ closePopup, pid }) => {
         {
           name: formData.name,
           slug: formData.slug,
-          image: formData.Location,
+          image: formData.newImage ? formData.Location : formData.image ,
           brand: formData.brand,
           category: formData.category,
           description: formData.description,
@@ -104,11 +106,11 @@ const EditProductPopup = ({ closePopup, pid }) => {
           },
         }
       );
-      toast.success("Product updated successfully");
       dispatch({ type: "CREATE_SUCCESS" });
+      window.location.reload(); // Refresh the page
+      toast.success("Product updated successfully");
 
       console.log(data);
-      window.location.reload(); // Refresh the page
       // console.log("product created");
     } catch (err) {
       toast.error(getError(err));
