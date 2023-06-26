@@ -1,13 +1,68 @@
-# MERN OneMart
 
-How to use this project?
+# OneMart - MERN Ecommerce
 
-1. Open your terminal and paste this git clone https://github.com/manjeet826510/OneMart.git
-2.
+A Mern Ecommerce website for buying products online.
 
-This is a Ecommerce MERN web app to buy any products online.
-Users can login if already registerd or create new account if
+## Demo Website
 
-In Frontend, I have used React JS, React Bootstrap, some css and Redux for state management
-In Backend, Node JS is used to create api to connect with Database.
-No Sql Database - Mongodb is used for
+Render : https://onemart71.onrender.com/
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/manjeet826510/OneMart.git
+```
+
+Go to the project directory
+
+```bash
+  cd OneMart
+```
+Open OneMart App in vs code
+
+```bash
+  code .
+```
+Open Terminal in vs code & create .env file inside backend folder
+
+```bash
+  cd backend && touch .env
+```
+
+
+Open .env file and paste below contents and provide the <value> of all these variables, generate yourself
+
+```bash
+JWT_SECRET = <value>
+MONGODB_URI_LOCAL = <value>
+MONGODB_URI = <value>
+REACT_APP_RAZORPAY_KEY_ID=<value>
+RAZORPAY_SECRET = <value>
+AccessKey = <value>
+SecretKey = <value>
+region = <value>
+bucket = <value>
+```
+
+To run backend - do cd backend first if you are not in backend directory
+```bash
+npm install
+npm start
+```
+To run frontend: Open a new terminal
+```bash
+cd frontend
+npm install
+npm start
+```
+This will open the website on local host in the browser at
+ http://localhost:3000
+
+To login as admin - 
+Create your user account and change the isAdmin field value from "false" to "true" inside the User Collection of your MongoDb account.
+
+
+
