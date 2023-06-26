@@ -1,11 +1,4 @@
-import {
-  BrowserRouter,
-  Link,
-  Route,
-  Routes,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import Container from "react-bootstrap/Container";
@@ -29,7 +22,6 @@ import ProfileScreen from "./screens/ProfileScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import Button from "react-bootstrap/esm/Button";
 import ErrorScreen from "./screens/ErrorScreen";
-import Seller from "./screens/Seller";
 import SearchBox from "./components/SearchBox";
 import getError from "./utils";
 import axios from "axios";
@@ -39,6 +31,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import ProductListScreen from "./screens/ProductListScreen";
 import CreateProductPopup from "./screens/CreateProductPopup";
+import { Col, Row } from "react-bootstrap";
 
 function App() {
   // const navigate = useNavigate();
@@ -56,45 +49,45 @@ function App() {
     window.location.href = "/signin";
   };
 
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  // const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   // console.log(sidebarIsOpen);
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await axios.get(`/api/products/categories`);
-        setCategories(data);
-      } catch (err) {
-        toast.error(getError(err));
-      }
-    };
-    fetchCategories();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const { data } = await axios.get(`/api/products/categories`);
+  //       setCategories(data);
+  //     } catch (err) {
+  //       toast.error(getError(err));
+  //     }
+  //   };
+  //   fetchCategories();
+  // }, []);
   return (
     <BrowserRouter>
       <div
-        className={
-          sidebarIsOpen
-            ? "d-flex flex-column site-container active-cont"
-            : "d-flex flex-column site-container"
-        }
+        className="d-flex flex-column site-container"
+        
       >
         <ToastContainer position="bottom-center" limit={1} />
-        <header>
-          <Navbar bg="dark" variant="dark" expand="lg">
+        {/* header */}
+          <Navbar sticky="top"  bg="dark" variant="dark" expand="lg">
             <Container>
-              <Button
+              {/* <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button>
+              </Button> */}
               <LinkContainer to="/">
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand>OneMart</Navbar.Brand>
               </LinkContainer>
+
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
               <Navbar.Collapse id="basic-navbar-nav">
+              <br/>
                 <SearchBox />
                 <Nav className="me-auto w-100 justify-content-end">
                   <Link to="/cart" className="nav-link">
@@ -122,7 +115,9 @@ function App() {
                         Sign Out
                       </Link>
                     </NavDropdown>
-                  ) : (
+                  ) 
+                  : 
+                  (
                     <Link className="nav-link" to="/signin">
                       Sign In
                     </Link>
@@ -153,8 +148,8 @@ function App() {
             </Container>
           </Navbar>
           {/* <Link to = '/'>amazona</Link> */}
-        </header>
-        <div
+        
+        {/* <div
           className={
             sidebarIsOpen
               ? "active-nav side-navbar d-flex justify-content-between flex-wrap flex-column"
@@ -179,7 +174,7 @@ function App() {
               </Nav.Item>
             ))}
           </Nav>
-        </div>
+        </div> */}
         <main>
           <Container className="mt-3">
             <Routes>

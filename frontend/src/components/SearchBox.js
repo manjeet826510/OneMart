@@ -4,6 +4,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/esm/Button';
 import FormControl from 'react-bootstrap/esm/FormControl';
 import { useNavigate } from 'react-router-dom';
+import "../index.css"
+import { Container } from 'react-bootstrap';
 
 const SearchBox = () => {
     const navigate = useNavigate();
@@ -15,15 +17,15 @@ const SearchBox = () => {
         e.target.reset();
     }
   return (
-    <div>
+    <Container fluid>
         <Form
         onSubmit={submitHandler}
         >
-            <InputGroup>
+            <InputGroup >
                 <FormControl 
                 type='text'
                 onChange={(e)=>setQuery(e.target.value)}
-                placeholder="search products..."
+                placeholder="search products, brands and more..."
                 ></FormControl>
                 <Button
                 type='submit'
@@ -32,7 +34,7 @@ const SearchBox = () => {
                 </Button>
             </InputGroup>
         </Form>
-    </div>
+    </Container>
   )
 }
 

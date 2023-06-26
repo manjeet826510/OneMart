@@ -6,7 +6,8 @@ import Col from "react-bootstrap/Col";
 import { Helmet } from "react-helmet-async";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { Link } from "react-router-dom";
+import UncontrolledExample from "../components/Corousel";
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -45,9 +46,13 @@ const HomeScreen = () => {
   return (
     <div>
       <Helmet>
-        <title>Amazona</title>
-      </Helmet>
+        <title>OneMart</title>
+      </Helmet>   
+
+      <UncontrolledExample/>  
+
       <h1>Featured Products</h1>
+      
       <div className="products">
         {loading ? (
           <LoadingBox />
@@ -56,7 +61,7 @@ const HomeScreen = () => {
         ) : (
           <Row>
             {products.map((product) => (
-              <Col sm={6} md={4} lg={3} className="mb-3" key={product.slug}>
+              <Col xs={6} lg={3} className="mb-3" key={product.slug}>
                 <Product product={product} />
               </Col>
             ))}
