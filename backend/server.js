@@ -1,5 +1,5 @@
 import express from "express";
-import dotenv from "dotenv";
+import dotenv from "dotenv"
 import mongoose from "mongoose";
 import productRouter from "./routes/productRoutes.js";
 import userRouter from "./routes/userRoutes.js";
@@ -11,10 +11,12 @@ import uploadRouter from "./routes/uploadRouter.js";
 
 dotenv.config();
 
+console.log(process.env.MONGODB_URI_LOCAL);
+
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI_LOCAL)
   .then(() => console.log("connected to db"))
-  .catch((err) => console.log(err.message));
+  .catch((err) => console.log("error ="+err.message));
 
 const app = express();
 

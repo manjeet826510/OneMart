@@ -38,7 +38,7 @@ const upload = multer({
 // Upload to S3 bucket
 const uploadToS3 = async (fileData) => {
   const params = {
-    Bucket: "mymernbucket-amazona",
+    Bucket: process.env.bucket,
     Key: `${Date.now().toString()}.jpg`,
     Body: fileData,
   };

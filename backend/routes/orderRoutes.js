@@ -8,8 +8,26 @@ import User from "../models/userModel.js";
 
 const orderRouter = express.Router();
 
-orderRouter.post(
-  "/",
+const PAGE_SIZE = 3;
+
+orderRouter.get("/admin", isAuth, isAdmin, async (req, res) => {
+  console.log("hello from backend");
+  console.log(req.query);
+  const pageSize = req.query.pageSize || PAGE_SIZE;
+  const page = req.query.page || 1;
+
+  const orders = await Order.find()
+    .skip(pageSize * (page - 1))
+    .limit(pageSize);
+  console.log(orders);
+  // console.log(products);
+  const countOrders = await Order.countDocuments(); //4
+  // console.log(countProducts);
+  // console.log(pageSize);
+  res.send({ orders, page, pages: Math.ceil(countOrders / pageSize) });
+});
+
+orderRouter.post("/",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     // console.log(req.body);
@@ -28,8 +46,7 @@ orderRouter.post(
   })
 );
 
-orderRouter.get(
-  "/summary",
+orderRouter.get("/summary",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
@@ -95,8 +112,7 @@ orderRouter.get(
   })
 );
 
-orderRouter.get(
-  "/mine",
+orderRouter.get("/mine",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     // console.log('Hello from backend');
@@ -112,8 +128,7 @@ orderRouter.get(
   })
 );
 
-orderRouter.get(
-  "/:id",
+orderRouter.get("/:id",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     if (!mongoose.isValidObjectId(req.params.id)) {
@@ -129,8 +144,7 @@ orderRouter.get(
   })
 );
 
-orderRouter.put(
-  "/:id/pay",
+orderRouter.put("/:id/pay",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     console.log("req is coming to orderRouter.put", req);
@@ -152,5 +166,7 @@ orderRouter.put(
     }
   })
 );
+
+
 
 export default orderRouter;

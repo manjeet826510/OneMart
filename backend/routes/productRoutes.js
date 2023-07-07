@@ -11,8 +11,7 @@ productRouter.get("/", async (req, res) => {
   res.send(products);
 });
 
-productRouter.post(
-  "/",
+productRouter.post("/",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
@@ -56,8 +55,7 @@ productRouter.get("/admin", isAuth, isAdmin, async (req, res) => {
   res.send({ products, page, pages: Math.ceil(countProducts / pageSize) });
 });
 
-productRouter.get(
-  "/search",
+productRouter.get("/search",
   expressAsyncHandler(async (req, res) => {
     // search?category=all&query=nike&price=all&rating=all&order=newest&page=1
     // await axios.get(
@@ -168,8 +166,7 @@ productRouter.get(
   })
 );
 
-productRouter.get(
-  "/categories",
+productRouter.get("/categories",
   expressAsyncHandler(async (req, res) => {
     const categories = await Product.find().distinct("category");
     res.send(categories);
@@ -185,8 +182,7 @@ productRouter.get("/slug/:slug", async (req, res) => {
     res.status(404).send({ message: "Product Not Found" });
   }
 });
-productRouter.get(
-  "/:id",
+productRouter.get("/:id",
   expressAsyncHandler(async (req, res) => {
     // console.log(req.params);
     const product = await Product.findOne({ _id: req.params.id });
@@ -198,8 +194,7 @@ productRouter.get(
   })
 );
 
-productRouter.put(
-  "/:id",
+productRouter.put("/:id",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
@@ -237,8 +232,7 @@ productRouter.put(
     }
   })
 );
-productRouter.delete(
-  "/:id",
+productRouter.delete("/:id",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {

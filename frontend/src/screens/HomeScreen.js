@@ -35,6 +35,7 @@ const HomeScreen = () => {
       try {
         const result = await axios.get("/api/products");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+        console.log(result.data);
       } catch (error) {
         dispatch({ type: "FETCH_FAIL", payload: error.message });
       }
@@ -44,13 +45,13 @@ const HomeScreen = () => {
     fetchData();
   }, []);
   return (
-    <div>
+    <div className="main-home">
       <Helmet>
         <title>OneMart</title>
       </Helmet>   
 
       <UncontrolledExample/>  
-
+    <hr/>
       <h1>Featured Products</h1>
       
       <div className="products">
@@ -61,6 +62,24 @@ const HomeScreen = () => {
         ) : (
           <Row>
             {products.map((product) => (
+              <Col xs={6} lg={3} className="mb-3" key={product.slug}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+        )}
+      </div>
+      <hr/>
+      <h1>New Arrivals</h1>
+      
+      <div className="products">
+        {loading ? (
+          <LoadingBox />
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
+          <Row>
+            {products.reverse().map((product) => (
               <Col xs={6} lg={3} className="mb-3" key={product.slug}>
                 <Product product={product} />
               </Col>

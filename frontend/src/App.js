@@ -32,6 +32,7 @@ import AdminRoute from "./components/AdminRoute";
 import ProductListScreen from "./screens/ProductListScreen";
 import CreateProductPopup from "./screens/CreateProductPopup";
 import { Col, Row } from "react-bootstrap";
+import OrderListScreen from "./screens/OrderListScreen";
 
 function App() {
   // const navigate = useNavigate();
@@ -66,13 +67,11 @@ function App() {
   // }, []);
   return (
     <BrowserRouter>
-      <div
-        className="d-flex flex-column site-container"
-        
-      >
+      <div className="d-flex flex-column site-container">
         <ToastContainer position="bottom-center" limit={1} />
         {/* header */}
           <Navbar sticky="top"  bg="dark" variant="dark" expand="lg">
+
             <Container>
               {/* <Button
                 variant="dark"
@@ -88,8 +87,11 @@ function App() {
 
               <Navbar.Collapse id="basic-navbar-nav">
               <br/>
+
                 <SearchBox />
+
                 <Nav className="me-auto w-100 justify-content-end">
+
                   <Link to="/cart" className="nav-link">
                     Cart
                     {cart.cartItems.length > 0 && (
@@ -98,6 +100,7 @@ function App() {
                       </Badge>
                     )}
                   </Link>
+                  
                   {userInfo ? (
                     <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
                       <LinkContainer to="/profile">
@@ -144,6 +147,7 @@ function App() {
 
                   {/* admin ends here*/}
                 </Nav>
+
               </Navbar.Collapse>
             </Container>
           </Navbar>
@@ -244,6 +248,15 @@ function App() {
                   <AdminRoute>
                     {" "}
                     <ProductListScreen />{" "}
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/orderlist"
+                element={
+                  <AdminRoute>
+                    {" "}
+                    <OrderListScreen/>{" "}
                   </AdminRoute>
                 }
               />

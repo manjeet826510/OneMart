@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/manjeet826510/OneMart/issues"
   },
-  "homepage": "https://github.com/manjeet826510/OneMart#readme"
+  "homepage": "https://github.com/manjeet826510/OneMart#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
 }
