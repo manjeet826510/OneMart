@@ -11,10 +11,10 @@ import uploadRouter from "./routes/uploadRouter.js";
 
 dotenv.config();
 
-console.log(process.env.MONGODB_URI_LOCAL);
+console.log(process.env.MONGODB_URI);
 
 mongoose
-  .connect(process.env.MONGODB_URI_LOCAL)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("connected to db"))
   .catch((err) => console.log("error ="+err.message));
 
