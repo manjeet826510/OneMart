@@ -108,6 +108,13 @@ img{
   height: 80px;
 }
 
+.card-img-top{
+  width: auto;
+    height: 350px;
+    /* background-color: #f08000; */
+
+}
+
 .small-container{
   max-width: 600px;
 }

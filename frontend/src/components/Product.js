@@ -23,7 +23,7 @@ const Product = (props) => {
     ctxDispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
   };
   return (
-    <Card>
+    <Card style={{ alignItems: 'center' }}>
       <Link to={`/product/${product.slug}`}>
         <img src={product.image}
          alt={product.name} 
