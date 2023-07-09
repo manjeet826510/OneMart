@@ -10,22 +10,38 @@ const orderRouter = express.Router();
 
 const PAGE_SIZE = 3;
 
-orderRouter.get("/admin", isAuth, isAdmin, async (req, res) => {
-  console.log("hello from backend");
-  console.log(req.query);
-  const pageSize = req.query.pageSize || PAGE_SIZE;
-  const page = req.query.page || 1;
+// orderRouter.get("/admin", isAuth, isAdmin, async (req, res) => {
+//   console.log("hello from backend");
+//   console.log(req.query);
+//   const pageSize = req.query.pageSize || PAGE_SIZE;
+//   const page = req.query.page || 1;
 
-  const orders = await Order.find()
-    .skip(pageSize * (page - 1))
-    .limit(pageSize);
-  console.log(orders);
-  // console.log(products);
-  const countOrders = await Order.countDocuments(); //4
-  // console.log(countProducts);
-  // console.log(pageSize);
-  res.send({ orders, page, pages: Math.ceil(countOrders / pageSize) });
-});
+//   const orders = await Order.find()
+//     .skip(pageSize * (page - 1))
+//     .limit(pageSize);
+//   console.log(orders);
+//   // console.log(products);
+//   const countOrders = await Order.countDocuments(); //4
+//   // console.log(countProducts);
+//   // console.log(pageSize);
+//   res.send({ orders, page, pages: Math.ceil(countOrders / pageSize) });
+// });
+
+orderRouter.get("/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const pageSize = req.query.pageSize || PAGE_SIZE;
+    const page = req.query.page || 1;
+    const orders = await Order.find()
+      .populate("user", "name")
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    const countOrders = await Order.countDocuments(); //4
+
+    res.send({ orders, page, pages: Math.ceil(countOrders / pageSize) });
+  })
+);
 
 orderRouter.post("/",
   isAuth,
@@ -166,7 +182,5 @@ orderRouter.put("/:id/pay",
     }
   })
 );
-
-
 
 export default orderRouter;

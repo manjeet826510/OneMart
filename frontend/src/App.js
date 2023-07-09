@@ -255,8 +255,8 @@ function App() {
                 path="/admin/orderlist"
                 element={
                   <AdminRoute>
-                    {" "}
-                    <OrderListScreen/>{" "}
+                    
+                    <OrderListScreen/>
                   </AdminRoute>
                 }
               />
