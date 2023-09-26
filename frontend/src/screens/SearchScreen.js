@@ -95,6 +95,7 @@ const SearchScreen = () => {
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get("category") || "all";
   const query = sp.get("query") || "all";
+  console.log(`query = ${query}`);
   const price = sp.get("price") || "all";
   const rating = sp.get("rating") || "all";
   const order = sp.get("order") || "newest";
@@ -129,6 +130,7 @@ const SearchScreen = () => {
 
   const [categories, setCategories] = useState([]);
   //categories = ["Pants", "Shirts"]
+  console.log(`categories = ${categories}`);
 
   useEffect(() => {
     const fetchCategories = async () => {

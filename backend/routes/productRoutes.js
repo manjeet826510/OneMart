@@ -73,7 +73,7 @@ productRouter.get(
     //     order=${order}
     //   }
     // }
-    // console.log(req);
+    console.log(req);
 
     const { query } = req;
 
@@ -83,6 +83,8 @@ productRouter.get(
     const rating = query.rating || "";
     const order = query.order || "";
     const page = query.page || 1;
+
+    console.log(`searchQuery = ${searchQuery}`);
 
     const pageSize = query.pageSize || PAGE_SIZE;
 

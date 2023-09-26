@@ -24,20 +24,25 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/rzp/razorpay-key", (req, res) => {
+// const base_url = process.env.backend;
+// const base_url = `http://localhost:5000`;
+// console.log(base_url);
+
+app.get(`/api/rzp/razorpay-key`, (req, res) => {
   const razorpayKey = process.env.REACT_APP_RAZORPAY_KEY_ID;
   res.json({ razorpayKey });
 });
 
 // app.use("/api/seed", seedRouter);
-app.use("/api/products", productRouter);
-app.use("/api/users", userRouter);
-app.use("/api/orders", orderRouter);
-app.use("/admin/api/orders", orderRouter);
-app.use("/api/create", payRouter);
-app.use("/api/upload", uploadRouter);
+app.use(`/api/products`, productRouter);
+app.use(`/api/users`, userRouter);
+app.use(`/api/orders`, orderRouter);
+app.use(`/admin/api/orders`, orderRouter);
+app.use(`/api/create`, payRouter);
+app.use(`/api/upload`, uploadRouter);
 // app.use("/api/rzp", rzpRouter);
 
 const __dirname = path.resolve();

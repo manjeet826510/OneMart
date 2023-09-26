@@ -30,6 +30,15 @@ const reducer = (state, action) => {
       return { ...state, loadingPay: false };
     case "PAY_RESET":
       return { ...state, loadingPay: false, succcessPay: false };
+
+    case "DELIVER_REQUEST":
+      return { ...state, loadingDeliver: true };
+    case "DELIVER_SUCCESS":
+      return { ...state, loadingDeliver: false, succcessDeliver: true };
+    case "DELIVER_FAIL":
+      return { ...state, loadingDeliver: false };
+    case "DELIVER_RESET":
+      return { ...state, loadingDeliver: false, succcessDeliver: false };
     default:
       return state;
   }
@@ -44,7 +53,7 @@ const OrderScreen = () => {
   const { id: orderId } = params;
   const navigate = useNavigate();
 
-  const [{ loading, error, order, succcessPay, loadingPay }, dispatch] =
+  const [{ loading, error, order, succcessPay, loadingPay, loadingDeliver, succcessDeliver }, dispatch] =
     useReducer(reducer, {
       loading: true,
       order: {},
@@ -81,6 +90,10 @@ const OrderScreen = () => {
     });
     return dataResult;
   };
+
+  const deliverOrderHandler = ()=>{
+    console.log(`order delivered`);
+  }
 
   const paymentPopUp = async (options) => {
     try {
@@ -332,6 +345,18 @@ const OrderScreen = () => {
                     </div>
                   )}
                 </ListGroup.Item>
+                {
+                  userInfo.isAmin && order.isPaid && !order.isDelivered && (
+                    <ListGroup.Item>
+                      {
+                        loadingDeliver && <LoadingBox/>
+                      }
+                      <div className="d-grid">
+                        <Button type="button" onClick={deliverOrderHandler}>Deliver Order</Button>
+                      </div>
+                    </ListGroup.Item>
+                  )
+                }
               </ListGroup>
             </Card.Body>
           </Card>

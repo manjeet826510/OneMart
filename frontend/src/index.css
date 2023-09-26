@@ -44,10 +44,16 @@ img{
 /* for mobile */
 @media only screen and (max-width: 600px) {
   img {
-    padding: 20px;
+    /* padding: 20px; */
   }
   .corousel-img{
     padding: 0;
+  }
+  .card-img-top{
+    width: 50px;
+      height: auto;
+      /* background-color: #f08000; */
+  
   }
 }
 
