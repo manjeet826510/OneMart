@@ -7,7 +7,7 @@ A Mern Ecommerce website for buying products online.
 
 Render : https://onemart71.onrender.com/ (slow loading)
 
-AWS EC2 : https://65.2.161.249/ (fast loading)
+AWS EC2 : http://65.2.161.249/ (fast loading)
 
 
 ## Run Locally
