@@ -5,7 +5,9 @@ A Mern Ecommerce website for buying products online.
 
 ## Demo Website
 
-Render : https://onemart71.onrender.com/
+Render : https://onemart71.onrender.com/ (slow loading)
+
+AWS EC2 : https://65.2.161.249/ (fast loading)
 
 
 ## Run Locally
