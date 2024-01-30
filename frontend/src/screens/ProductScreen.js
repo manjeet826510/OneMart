@@ -41,7 +41,7 @@ const ProductScreen = () => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const result = await axios.get(`http://localhost:5000/api/products/slug/${slug}`);
+        const result = await axios.get(`https://onemart71.onrender.com/api/products/slug/${slug}`);
         // console.log(result);
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (error) {
@@ -61,7 +61,7 @@ const ProductScreen = () => {
     // console.log('existItem = ' + JSON.stringify(existItem));
     const quantity = existItem ? existItem.quantity + 1 : 1;
     // console.log(`quantity = ${quantity}`);
-    const { data } = await axios.get(`http://localhost:5000/api/products/${product._id}`);
+    const { data } = await axios.get(`http://65.2.161.249/api/products/${product._id}`);
     if (data.countInStock < quantity) {
       window.alert("Sorry, the product is out of stock");
       return;
