@@ -113,7 +113,7 @@ const SearchScreen = () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
+          `http://localhost:5000/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
         );
         // console.log(data);
         // data = [{}, {}, ...]
@@ -135,7 +135,7 @@ const SearchScreen = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await axios.get(`http://localhost:5000/api/products/categories`);
         setCategories(data); //data = ["Pants", "Shirts"]
       } catch (err) {
         toast.error(getError(err));

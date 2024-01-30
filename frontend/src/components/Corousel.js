@@ -12,18 +12,18 @@ function UncontrolledExample() {
         />
       </Carousel.Item>
       <Carousel.Item>
-        <Link
+        {/* <Link
           to={{
             pathname: "search",
             search: `?category=Mobile`,
           }}
-        >
+        > */}
           <img
             className="d-block w-100 corousel-img"
             src="https://rukminim1.flixcart.com/fk-p-flap/1688/280/image/1c04d33acfec2f5d.jpeg?q=50"
             alt="First slide"
           />
-        </Link>
+        {/* </Link> */}
       </Carousel.Item>
       <Carousel.Item>
         <img
