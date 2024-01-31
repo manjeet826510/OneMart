@@ -112,7 +112,8 @@ userRouter.post("/forgot-password",
         }).save();
 
         // Construct reset link
-        const link = `http://localhost:3000/reset-password?token=${resetToken}&id=${user._id}`;
+        const link = `${process.env.DEPLOY_DOMAIN}/reset-password?token=${resetToken}&id=${user._id}`;
+
 
         // Send email and wait for the result
         const emailResult = await sendEmail(user.email, 'Password Reset', link);
