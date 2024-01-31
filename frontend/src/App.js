@@ -33,6 +33,8 @@ import ProductListScreen from "./screens/ProductListScreen";
 import CreateProductPopup from "./screens/CreateProductPopup";
 import { Col, Row } from "react-bootstrap";
 import OrderListScreen from "./screens/OrderListScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
+import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 
 function App() {
   // const navigate = useNavigate();
@@ -188,6 +190,8 @@ function App() {
               <Route path="/search" element={<SearchScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
+              <Route path="/forgot-password" element = {<ForgotPasswordScreen/>} />
+              <Route path="/reset-password" element={<ResetPasswordScreen/>} />
               <Route path="/shipping" element={<ShippingAddressScreen />} />
               <Route path="/payment" element={<PaymentMethodScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />

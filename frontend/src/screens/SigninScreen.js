@@ -26,7 +26,7 @@ const SigninScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/users/signin", {
+      const { data } = await axios.post("http://localhost:5000/api/users/signin", {
         email: email,
         password: password,
       });
@@ -75,6 +75,10 @@ const SigninScreen = () => {
         <div>
           New Customer?{" "}
           <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
+        </div>
+        <div>
+          Forget Password?{" "}
+          <Link to={`/forgot-password`}>Reset your password</Link>
         </div>
       </Form>
     </Container>

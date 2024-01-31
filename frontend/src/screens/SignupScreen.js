@@ -85,7 +85,7 @@ const SignupScreen = () => {
         <Form.Group className="mb-3" controlId="confirmPassword">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
-            type="confirmPassword"
+            type="password"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
@@ -96,6 +96,9 @@ const SignupScreen = () => {
         <div>
           Already have an account?{" "}
           <Link to={`/signin?redirect=${redirect}`}>Sign in</Link>
+        </div>
+        <div style={{color: 'red'}}>
+          ⚠️Do not use fake or temp email otherwise you will not be able to reset your password later.
         </div>
       </Form>
     </Container>
